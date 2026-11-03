@@ -1,22 +1,27 @@
 import api from "./api";
 
 export async function funListar(){
-    return await api.get("/usuario", {headers:{Authorization:"Bearer **********************"}});
+    return await api.get("/usuario");
 
 }
 
-export function funGuardar(){
+export async function funGuardar(datos:any){
+    return await api.post("/usuario",datos);
 
 }
 
-export function funMostar(){
+export async function funMostar(id:number){
+    return await api.get("/usuario/"+id);
 
 }
 
-export function funModificar(){
+export async function funModificar(id:number,datos:any){
+    return await api.put("/usuario/"+id,datos);
 
 }
 
-export function funEliminar(){
+export async function funEliminar(id:number){
+    return await api.delete("/usuario/"+id);
+
 
 }
