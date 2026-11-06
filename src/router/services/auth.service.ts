@@ -6,6 +6,12 @@ export async function loginConlaravel(email:string, password:string) {
     return respuesta;
     
 }
+
+export async function obtenerPerfil() {
+    return await api.get("v1/auth/profile");
+    
+    
+}
 export async function logout() {
     
 }
