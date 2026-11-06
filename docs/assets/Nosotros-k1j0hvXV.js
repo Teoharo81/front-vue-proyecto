@@ -1,0 +1,1 @@
+import{n as e,r as t,t as n}from"./index-CWWhgYHc.js";var r={};function i(n,r){return t(),e(`h1`,null,`Acerca de nosotros`)}var a=n(r,[[`render`,i]]);export{a as default};
