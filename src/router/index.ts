@@ -6,6 +6,7 @@ import Inicio from '@/views/web/Inicio.vue'
 import WebLayout from '@/views/layouts/WebLayout.vue'
 import AppLayout from '@/views/layouts/AppLayout.vue'
 import Perfil from '@/views/admin/Perfil.vue'
+import Categoria from '@/views/admin/inventario/Categoria.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -50,13 +51,22 @@ const router = createRouter({
       children:[
         {
           path: 'perfil',
+          meta: {requireAuth:true},
           name: 'Perfil',
           component: Perfil
 
         },
+
         {
            path:'usuario',
-           component:Usuario
+           meta: {requireAuth:true},
+           component:Usuario,
+        },
+
+          {
+           path:'categoria',
+           meta: {requireAuth:true},
+           component:Categoria,
         }
 
       ]

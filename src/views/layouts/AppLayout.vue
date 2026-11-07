@@ -4,14 +4,13 @@
       <nav>
         <RouterLink to="/admin/perfil">Perfil</RouterLink> |
         <RouterLink to="/admin/usuario">GESTION USUARIO</RouterLink> |
+        <RouterLink to="/admin/categoria">GESTION CATEGORIAS</RouterLink> 
        
       </nav>
 
 
-
-
-
     <RouterView/>
+    
 </template>
 
 <script setup lang="ts">
