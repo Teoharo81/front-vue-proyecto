@@ -11,7 +11,9 @@
         <label for="">Ingrese su contraseña</label>
         <input type="password" v-model="usuario.password">
         <br>
-        <button type="button"@click="funGuardarUsuario()">Guardar usuario</button>
+        <v-btn color="primary" @click="funGuardarUsuario()">
+         Guardar Usuario
+        </v-btn>
     </div>
 
     <table border="1">

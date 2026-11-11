@@ -17,9 +17,35 @@
 
     </form>
 
+    <v-card    title="Gestion Categorias" >
+        <v-data-table :items="categorias" density="compact" v-model:sort-by="sortby" >
+            
+        <template v-slot:top>
+        <v-toolbar flat>
+          <v-toolbar-title>
+            <v-icon color="medium-emphasis" icon="mdi-book-multiple" size="x-small" start></v-icon>
+
+            Categorias
+          </v-toolbar-title>
+
+          <v-btn
+            class="me-2"
+            prepend-icon="mdi-plus"
+            rounded="lg"
+            text="Nueva categoria"
+            border
+            @click="dialog=true"
+        
+          ></v-btn>
+        </v-toolbar>
+        </template>
+            
+        </v-data-table>
 
 
-         <table border="1">
+    </v-card>
+       
+     <table border="1">
         <tr>
             <td>ID</td>
             <td>NOMBRE</td>
@@ -43,6 +69,41 @@
 
 
     <pre>{{ categorias }} </pre>
+
+    <v-dialog v-model="dialog" max-width="500">
+    <v-card
+      :subtitle="`${categoria.id ? 'Modificar' : 'Crear'} tu categoria`"
+      :title="`${categoria.id ? 'Editar' : 'Agregar'} una categoria`"
+    >
+      <template v-slot:text>
+        <v-row>
+          <v-col cols="12">
+            <v-text-field v-model="categoria.nombre" label="Nombre"></v-text-field>
+          </v-col>
+
+          <v-col cols="12" >
+            <v-text-field v-model="categoria.descripcion" label="Descripcion"></v-text-field>
+          </v-col>
+
+          
+          
+        </v-row>
+      </template>
+
+      <v-divider></v-divider>
+
+      <v-card-actions class="bg-surface-light">
+        <v-btn text="Cancelar" variant="plain" @click="dialog = false"></v-btn>
+
+        <v-spacer></v-spacer>
+
+        <v-btn text="Guardar" @click="funGurdarCategoria"></v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
+
+
+
 </template>
 
 <script lang="ts" setup>
@@ -54,6 +115,9 @@ import { onMounted, ref } from 'vue';
 
 const categorias=ref<Categoria[]>([]);
 const categoria=ref<Categoria>({nombre: ""})
+
+const dialog = ref<boolean>(false)
+const sortby=ref<any>([{key:'id', order:'asc'}])
 
 onMounted(()=>{
     listarCategorias()
@@ -81,6 +145,7 @@ async function funGurdarCategoria() {
             listarCategorias(); 
 
           }
+          dialog.value=false;
 
         
     } catch (error) {
