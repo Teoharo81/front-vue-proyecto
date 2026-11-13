@@ -7,6 +7,8 @@ import WebLayout from '@/views/layouts/WebLayout.vue'
 import AppLayout from '@/views/layouts/AppLayout.vue'
 import Perfil from '@/views/admin/Perfil.vue'
 import Categoria from '@/views/admin/inventario/Categoria.vue'
+import Sucursal from '@/views/admin/inventario/Sucursal.vue'
+import Almacen from '@/views/admin/inventario/Almacen.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -67,6 +69,20 @@ const router = createRouter({
            path:'categoria',
            meta: {requireAuth:true},
            component:Categoria,
+        },
+
+          {
+           path:'sucursal',
+           meta: {requireAuth:true},
+           name:'Sucursal',
+           component:Sucursal,
+        },
+
+          {
+           path:'almacen',
+           meta: {requireAuth:true},
+           name:'Almacen',
+           component:Almacen,
         }
 
       ]

@@ -18,7 +18,7 @@
     </form>
 
     <v-card    title="Gestion Categorias" >
-        <v-data-table :items="categorias" density="compact" v-model:sort-by="sortby" >
+        <v-data-table :headers="headers":items="categorias" density="compact" v-model:sort-by="sortby" >
             
         <template v-slot:top>
         <v-toolbar flat>
@@ -114,10 +114,17 @@ import { onMounted, ref } from 'vue';
 
 
 const categorias=ref<Categoria[]>([]);
-const categoria=ref<Categoria>({nombre: ""})
+const categoria=ref<Categoria>({nombre: "", descripcion: ""})
 
 const dialog = ref<boolean>(false)
 const sortby=ref<any>([{key:'id', order:'asc'}])
+
+const headers=[
+    {title:"ID", key:"id"},
+    {title:"NOMBRE", key:"nombre"},
+    {title:"DETALLE", key:"descripcion"},
+   
+]
 
 onMounted(()=>{
     listarCategorias()
@@ -136,12 +143,12 @@ async function funGurdarCategoria() {
     try {
           if(categoria.value.id){
             await funModificar(categoria.value.id, categoria.value);
-            categoria.value={nombre:""}
+            categoria.value={nombre:"", descripcion:""}
             listarCategorias();
 
           }else{
             await funGuardar(categoria.value);
-            categoria.value= {nombre:""};
+            categoria.value= {nombre:"", descripcion:""};
             listarCategorias(); 
 
           }

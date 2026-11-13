@@ -14,17 +14,17 @@ export async function funGuardar(categoria:Categoria){
 }
 
 export async function funMostar(id:number){
-    return api.get('/categoria/${id}');
+    return api.get(`/categoria/${id}`);
 
 }
 
 export async function funModificar(id:number,categoria:Categoria){
-    return api.put('/categoria/${id}',categoria);
+    return api.put(`/categoria/${id}`,categoria);
 
 }
 
 export async function funEliminar(id:number){
-    return api.delete("/categoria/${id}");
+    return api.delete(`/categoria/${id}`);
 
 
 }
