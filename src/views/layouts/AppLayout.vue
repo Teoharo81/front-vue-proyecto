@@ -6,9 +6,11 @@
       <v-divider></v-divider>
       <v-list-item prepend-icon="mdi-account" to="/admin/perfil" link title="Mi Perfil"></v-list-item>
       <v-list-item prepend-icon="mdi-account-group-outline" to="/admin/usuario" link title="Mis Usuarios "></v-list-item>
+      <v-divider></v-divider>
       <v-list-item prepend-icon="mdi-circle" to="/admin/categoria" link title="Mis Categorias"></v-list-item>
       <v-list-item prepend-icon="mdi-store-outline" to="/admin/sucursal" link title="Mis Sucursales"></v-list-item>
       <v-list-item prepend-icon="mdi-warehouse" to="/admin/almacen" link title="Mis Almacenes"></v-list-item>
+      <v-list-item prepend-icon="mdi-package" to="/admin/producto" link title="Productos"></v-list-item>
 
        <template v-slot:append>
           <div class="pa-2">
