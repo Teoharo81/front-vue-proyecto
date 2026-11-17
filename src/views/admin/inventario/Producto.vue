@@ -11,9 +11,13 @@
           prepend-icon="mdi-plus"
           @click="abrirCrear"
         >
-          Nueva sucursal
+          Nuevo producto
         </v-btn>
       </v-toolbar>
+
+      <v-card-subtitle>
+        {{ productos.length }}
+      </v-card-subtitle>
 
       <v-divider></v-divider>
 
@@ -28,21 +32,24 @@
           clearable
           class="mb-4"
         ></v-text-field>
+      
 
-        <v-data-table
-
-            
-          :headers="headers"
-          :items="productos"
-          :search="buscar"
-          :loading="cargando"
-          item-value="id"
+        <v-data-table-server v-model:items-per-page="itemsPerPage"
+           :headers="headers"
+           :items="productos"
+           v-model:page="page"
+           :items-length="30"
+           :loading="cargando"
+           item-value="name"
+          @update:options="listarProductos"
+         
           hover
           no-data-text="No hay sucursales registradas"
         >
         
+        
           <template v-slot:item.imagen="{ item }">
-            <img :src="item.imagen" alt="">    
+            <img :src="`https://backinventarios.blumbit.net/${item.imagen}`" alt="" width="30">    
           </template>
 
 
@@ -66,7 +73,7 @@
               
           </template>
 
-        </v-data-table>
+        </v-data-table-server>
       </v-card-text>
     </v-card>
     </v-container>
@@ -80,7 +87,7 @@ import type { Producto } from '@/router/services/interfaces/Producto';
 import { onMounted,ref } from 'vue';
 import { funListar } from '@/router/services/Producto.service'
 
-
+  const itemsPerPage = ref(10)
 
 
 
@@ -95,9 +102,12 @@ const headers = [
   { title: 'ACCIONES', key: 'actions' ,align:'end' as const, sortable:false},
 ];
 const cargando=ref(false);
+
 const buscar=ref('');
 const errores = ref<Record<string, string | string[]>>({});
 const dialog = ref<boolean>(false);
+
+const page=ref(1)
 
 onMounted(()=>{
     listarProductos()
@@ -106,8 +116,10 @@ onMounted(()=>{
 })
 
 async function listarProductos(){
-    const {data} =await funListar();
+    cargando.value=true;
+    const {data} =await funListar(page.value,itemsPerPage.value);
     productos.value=data.data
+    cargando.value=false;
 }
 
 const vacio = ():Producto=>({

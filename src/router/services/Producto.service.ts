@@ -1,8 +1,8 @@
 import api from "./api";
 import type { Producto } from "./interfaces/Producto";
 
-export async function funListar(){
-    return api.get('/producto');
+export async function funListar(page:number=1,limit:number=10){
+    return api.get(`/producto?page=${page}&limit=${limit}`);
 }
 
 export async function funGuardar(prod:Producto){
