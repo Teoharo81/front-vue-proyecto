@@ -5,7 +5,7 @@ export interface Producto{
     descripcion?:string,
     precio_venta_actual:string;
     imagen?: string;
-    estado:string;
+    estado:boolean;
     categoria_id:number;
     created_at?:string | null;
     update_At?:string | null
